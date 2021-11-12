@@ -1,30 +1,30 @@
 class PreloadScene extends Phaser.Scene {
     constructor() {
-        super('PreloadScene');
+        super("PreloadScene");
     }
 
     preload() {
         // säg åt phaser att lägga till /assets i alla paths
-        this.load.setBaseURL('/assets');
-        this.load.image('background', '/images/background.png');
-        this.load.image('spike', '/images/spike.png');
+        this.load.setBaseURL("/assets");
+        this.load.image("background", "/images/background.png");
+        this.load.image("spike", "/images/spike.png");
         this.load.atlas(
-            'player',
-            '/images/jefrens_hero.png',
-            '/images/jefrens_hero.json'
+            "player",
+            "/images/jefrens_hero.png",
+            "/images/jefrens_hero.json"
         );
         this.load.atlas(
-            'foe',
-            '/images/jefrens_foe.png',
-            '/images/jefrens_foe.json'
+            "foe",
+            "/images/jefrens_foe.png",
+            "/images/jefrens_foe.json"
         );
-        this.load.image('tiles', '/tilesets/jefrens_tilesheet.png');
+        this.load.image("tiles", "/tilesets/jefrens_tilesheet.png");
         // här laddar vi in en tilemap med spelets "karta"
-        this.load.tilemapTiledJSON('map', '/tilemaps/level1.json');
+        this.load.tilemapTiledJSON("map", "/tilemaps/level_1fix.json");
     }
 
     create() {
-        this.scene.start('PlayScene');
+        this.scene.start("PlayScene");
     }
 }
 
