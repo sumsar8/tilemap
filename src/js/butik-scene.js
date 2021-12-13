@@ -1,6 +1,6 @@
-class PreloadScene extends Phaser.Scene {
+class ButikScene extends Phaser.Scene {
     constructor() {
-        super('MenuScene');
+        super('ButikScene');
     }
 
     create() {
@@ -13,7 +13,7 @@ class PreloadScene extends Phaser.Scene {
         // skapa texten för PAUSED
         // använder en font som laddats i base.njk från Google fonts
         // fixedW/H används för  att kunna centrera texten på skärmen
-        this.text = this.add.text(0, (this.game.config.height / 2) - 64, 'PAUSED', {
+        this.text = this.add.text(0, (this.game.config.height / 2) - 64, 'Butik', {
             fontFamily: '"Mochiy Pop P One"',
             fontSize: '64px',
             fill: '#ff0000',
@@ -21,6 +21,8 @@ class PreloadScene extends Phaser.Scene {
             fixedWidth: this.game.config.width,
             fixedHeight: this.game.config.height,
         });
+        this.object = this.add.rectangle(600, 300, 1000, 500, 0xff1100);
+
     }
 
     // scenens uppdate metod, lyssnar på keyDown
@@ -34,4 +36,4 @@ class PreloadScene extends Phaser.Scene {
     }
 }
 
-export default PreloadScene;
+export default ButikScene;

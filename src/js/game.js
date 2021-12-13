@@ -1,7 +1,7 @@
 // importera alla scener
 import PlayScene from "./play-scene";
 import PreloadScene from "./preload-scene";
-import MenuScene from "./menu-scene";
+import ButikScene from "./butik-scene";
 
 // spelets config
 const config = {
@@ -17,7 +17,7 @@ const config = {
             debug: true,
         },
     },
-    scene: [PreloadScene, PlayScene, MenuScene],
+    scene: [PreloadScene, PlayScene, ButikScene],
     parent: "game",
 };
 
