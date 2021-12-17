@@ -19,7 +19,7 @@ class PlayScene extends Phaser.Scene {
             delay: 100,
             callback: this.updateCounter,
             callbackScope: this,
-            loop: true,
+            loop: true
         });
 
         this.allowski = true;
@@ -31,7 +31,7 @@ class PlayScene extends Phaser.Scene {
         this.velocity = 0;
 
         this.coldlevel = 300;
-        this.coldresistance = 10;
+        this.coldresistance = 1;
         this.temperature = 10;
         this.outside = false;
         this.balance = 0;
@@ -128,9 +128,16 @@ class PlayScene extends Phaser.Scene {
 
         this.text = this.add.text(16, 16, "", {
             fontSize: "20px",
-            fill: "#ffffff",
+            fill: "#ffffff"
         });
         this.text.setScrollFactor(0);
+        this.coldbar = this.add.rectangle(
+            110,
+            30,
+            this.coldlevel,
+            30,
+            0xff3300
+        );
     }
 
     // play scenens update metod
@@ -158,7 +165,6 @@ class PlayScene extends Phaser.Scene {
             }
         }
 
-        // för pause
         //Butik
         if (this.player.x < 280) {
             if (this.keyObj.isDown) {
@@ -174,6 +180,13 @@ class PlayScene extends Phaser.Scene {
             this.cameras.main.x = -this.player.x + 657;
             this.text.x = this.player.x - 650;
         }
+
+        //coldbar
+        if (this.player.x > 657 && this.player.x < 2543) {
+            this.coldbar.x = this.player.x - 485;
+        }
+        this.coldbar.width = this.coldlevel;
+
         if (this.velocity < this.maxspeed) {
             if (
                 this.cursors.space.isDown &&
@@ -232,22 +245,22 @@ class PlayScene extends Phaser.Scene {
             frames: this.anims.generateFrameNames("player", {
                 prefix: "jefrens_",
                 start: 1,
-                end: 4,
+                end: 4
             }),
             frameRate: 10,
-            repeat: -1,
+            repeat: -1
         });
 
         this.anims.create({
             key: "idle",
             frames: [{ key: "player", frame: "jefrens_2" }],
-            frameRate: 10,
+            frameRate: 10
         });
 
         this.anims.create({
             key: "jump",
             frames: [{ key: "player", frame: "jefrens_5" }],
-            frameRate: 10,
+            frameRate: 10
         });
     }
 }
