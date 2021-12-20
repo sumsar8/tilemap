@@ -2,7 +2,7 @@ Planering
 V48
 M [x]Fixa startproblem
 O [x]Skapa playermovement
-F []Dö
+F [x]Dö
 
 V49
 M []Skapa Uppgraderingar
@@ -14,5 +14,5 @@ M []Slut
 O Fix & Extra
 F Fix & Extra
 
-V51 
+V51
 Fix & Extra
