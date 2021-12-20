@@ -6,19 +6,19 @@ import ButikScene from "./butik-scene";
 // spelets config
 const config = {
     type: Phaser.AUTO,
-    width: 3200,
-    height: innerHeight,
+    width: 16000,
+    height: 1080,
     pixelArt: true,
     transparent: true,
     physics: {
         default: "arcade",
         arcade: {
             gravity: { y: 400 },
-            debug: true,
-        },
-    },
+            debug: true
+        }
+    },  
     scene: [PreloadScene, PlayScene, ButikScene],
-    parent: "game",
+    parent: "game"
 };
 
 // initiera spelet

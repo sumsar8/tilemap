@@ -6,7 +6,9 @@ class PlayScene extends Phaser.Scene {
     updateCounter() {
         this.velocity = this.friction * this.velocity;
         if (this.outside == true) {
-            this.coldlevel -= this.temperature - this.coldresistance;
+            if (this.coldlevel > 0) {
+                //this.coldlevel -= this.temperature - this.coldresistance;
+            }
         } else {
             this.coldlevel = 300;
         }
@@ -46,7 +48,7 @@ class PlayScene extends Phaser.Scene {
         // skapa en tilemap från JSON filen vi preloadade
         const map = this.make.tilemap({ key: "map" });
         // ladda in tilesetbilden till vår tilemap
-        const tileset = map.addTilesetImage("platforms", "platforms");
+        const tileset = map.addTilesetImage("wintertileset64x64", "platforms");
 
         // initiera animationer, detta är flyttat till en egen metod
         // för att göra create metoden mindre rörig
@@ -58,67 +60,36 @@ class PlayScene extends Phaser.Scene {
         // Ladda lagret Platforms från tilemappen
         // och skapa dessa
         // sätt collisionen
+        map.createLayer("Ice", tileset);
         map.createLayer("Background", tileset);
-        map.createLayer("Mountains", tileset);
-        this.object = this.add.rectangle(800, 550, 30, 100, 0xff3300);
-        //Butik
-        this.object = this.add.rectangle(110, 550, 300, 100, 0xff3300);
+        map.createLayer("Shop", tileset);
+        this.namntext = this.add.text(1150, 220, "Rasmus Öberg TE19", {
+            fontSize: "12px",
+            fill: "#ffffff"
+        });
+        this.coldbar = this.add.rectangle(
+            110,
+            235,
+            this.coldlevel,
+            30,
+            0xff3300
+        );
 
         this.platforms = map.createLayer("Platforms", tileset);
         this.platforms.setCollisionByExclusion(-1, true);
-        // platforms.setCollisionByProperty({ collides: true });
-        // this.platforms.setCollisionFromCollisionGroup(
-        //     true,
-        //     true,
-        //     this.platforms
-        // );
-        // platforms.setCollision(1, true, true);
 
-        // skapa en spelare och ge den studs
         this.player = this.physics.add.sprite(670, 540, "player");
+
         this.player.setBounce(0.1);
         this.player.setCollideWorldBounds(true);
 
-        // skapa en fysik-grupp
-        /*this.spikes = this.physics.add.group({
-            allowGravity: false,
-            immovable: true
-        });
-*/
-        // från platforms som skapats från tilemappen
-        // kan vi ladda in andra lager
-        // i tilemappen finns det ett lager Spikes
-        // som innehåller spikarnas position
+        this.shop = this.add.sprite(224, 672, "shop");
+
         console.log(this.platforms);
-        /*map.getObjectLayer('Spikes').objects.forEach((spike) => {
-            // iterera över spikarna, skapa spelobjekt
-            const spikeSprite = this.spikes
-                .create(spike.x, spike.y - spike.height, 'spike')
-                .setOrigin(0);
-            spikeSprite.body
-                .setSize(spike.width, spike.height - 20)
-                .setOffset(0, 20);
-        });
-        // lägg till en collider mellan spelare och spik
-        // om en kollision sker, kör callback metoden playerHit
-        this.physics.add.collider(
-            this.player,
-            this.spikes,
-            this.playerHit,
-            null,
-            this
-        );
-*/
-        // krocka med platforms lagret
         this.physics.add.collider(this.player, this.platforms);
 
-        // skapa text på spelet, texten är tom
-        // textens innehåll sätts med updateText() metoden
-
-        // lägg till en keyboard input för W
         this.keyObj = this.input.keyboard.addKey("W", true, false);
 
-        // exempel för att lyssna på events
         this.events.on("pause", function () {
             console.log("Butikscene aktiv");
         });
@@ -130,23 +101,15 @@ class PlayScene extends Phaser.Scene {
             fontSize: "20px",
             fill: "#ffffff"
         });
-        this.text.setScrollFactor(0);
-        this.coldbar = this.add.rectangle(
-            110,
-            30,
-            this.coldlevel,
-            30,
-            0xff3300
-        );
     }
 
     // play scenens update metod
     update() {
-        if (this.player.x > 2048) {
-            this.player.x = 1720;
+        if (this.player.x > 10000) {
+            this.player.x = 5000;
             this.laps++;
             if (this.laps == 5) {
-                this.player.x = 100;
+                this.player.x = 0;
             }
         }
         if (this.player.x > 800) {
@@ -166,7 +129,7 @@ class PlayScene extends Phaser.Scene {
         }
 
         //Butik
-        if (this.player.x < 280) {
+        if (this.player.x < 335) {
             if (this.keyObj.isDown) {
                 // pausa nuvarande scen
                 this.scene.pause();
@@ -178,6 +141,7 @@ class PlayScene extends Phaser.Scene {
         //Kamera och text
         if (this.player.x > 657 && this.player.x < 2543) {
             this.cameras.main.x = -this.player.x + 657;
+            this.cameras.main.y = -200;
             this.text.x = this.player.x - 650;
         }
 
@@ -187,6 +151,10 @@ class PlayScene extends Phaser.Scene {
         }
         this.coldbar.width = this.coldlevel;
 
+        if (this.coldlevel < 0) {
+            this.coldbar.width = 0;
+        }
+
         if (this.velocity < this.maxspeed) {
             if (
                 this.cursors.space.isDown &&
@@ -195,6 +163,7 @@ class PlayScene extends Phaser.Scene {
             ) {
                 this.allowski = false;
                 this.velocity += this.pushspeed;
+                this.player.play("walk", true);
             }
             if (this.cursors.space.isUp) {
                 this.allowski = true;
@@ -214,24 +183,18 @@ class PlayScene extends Phaser.Scene {
                 this.player.play("walk", true);
             }
         }
-        // Only show the idle animation if the player is footed
-        // If this is not included, the player would look idle while jumping
         if (this.player.body.onFloor()) {
             this.player.play("idle", true);
         }
-
-        // Player can jump while walking any direction by pressing the space bar
-        // or the 'UP' arrow
+        this.shop.play("vendoridle", true);
 
         if (this.player.body.velocity.x > 0) {
             this.player.setFlipX(false);
         } else if (this.player.body.velocity.x < 0) {
-            // otherwise, make them face the other side
             this.player.setFlipX(true);
         }
     }
 
-    // metoden updateText för att uppdatera overlaytexten i spelet
     updateText() {
         this.text.setText(
             `Velocity: ${Math.round(this.velocity)} Cold: ${this.coldlevel}`
@@ -243,20 +206,36 @@ class PlayScene extends Phaser.Scene {
         this.anims.create({
             key: "walk",
             frames: this.anims.generateFrameNames("player", {
-                prefix: "jefrens_",
                 start: 1,
-                end: 4
+                end: 30,
+                zeroPad: 2,
+                prefix: "slide"
+            }),
+            frameRate: 20,
+            repeat: 1
+        });
+        this.anims.create({
+            key: "idle",
+            frames: this.anims.generateFrameNames("player", {
+                start: 1,
+                end: 7,
+                zeroPad: 2,
+                prefix: "idle"
+            }),
+            frameRate: 7,
+            repeat: 1
+        });
+        this.anims.create({
+            key: "vendoridle",
+            frames: this.anims.generateFrameNames("shop", {
+                prefix: "vendor0",
+                start: 1,
+                end: 6,
+                zeropad: 2
             }),
             frameRate: 10,
             repeat: -1
         });
-
-        this.anims.create({
-            key: "idle",
-            frames: [{ key: "player", frame: "jefrens_2" }],
-            frameRate: 10
-        });
-
         this.anims.create({
             key: "jump",
             frames: [{ key: "player", frame: "jefrens_5" }],
