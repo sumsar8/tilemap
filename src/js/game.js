@@ -7,7 +7,7 @@ import ButikScene from "./butik-scene";
 const config = {
     type: Phaser.AUTO,
     width: 16000,
-    height: 1080,
+    height: 1000,
     pixelArt: true,
     transparent: true,
     physics: {

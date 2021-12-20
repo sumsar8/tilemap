@@ -67,6 +67,10 @@ class PlayScene extends Phaser.Scene {
             fontSize: "12px",
             fill: "#ffffff"
         });
+        this.control = this.add.text(50, 400, "Space to ski, arrows to move", {
+            fontSize: "12px",
+            fill: "#ffffff"
+        });
         this.coldbar = this.add.rectangle(
             110,
             235,
