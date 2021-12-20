@@ -7,7 +7,7 @@ class PlayScene extends Phaser.Scene {
         this.velocity = this.friction * this.velocity;
         if (this.outside == true) {
             if (this.coldlevel > 0) {
-                //this.coldlevel -= this.temperature - this.coldresistance;
+                this.coldlevel -= this.temperature - this.coldresistance;
             }
         } else {
             this.coldlevel = 300;
