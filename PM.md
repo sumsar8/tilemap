@@ -2,19 +2,18 @@
 Zunerts Chronicles
 Rasmus Öberg
 ## Inledning
-Här beskriver du kortfattat arbetets syfte/mål, arbetssätt, genomförande.
- Vad är det för något du har utvecklat. Vilket problem har ditt projekt syftat på att lösa.
+Detta arbetes syfte var att utveckla ett 2d platformer spel och få kunskaper om spelutveckling och Phaser3 på vägen.
 ## Bakgrund
-I bakgrunden redogör du för projektets delar, här sammanfattar du din arbetsprocess. Beskriv den teknik du har använt och motivera valet av den.
- Berätta om ditt planeringsarbete.
- Försök att inte vara värderande, utan redogör för projektet, hur arbetet gick och dina erfarenheterna skriver du om i de följande delarna.
-Berätta om hur du har testat din produkt.
-I bakgrunden kan du med fördel inkludera bilder som beskriver och förklarar projektet.
+Till att börja så satte vi oss i mindre grupper och kom på spelidéer tillsammans. När vi hade en hyfsad tanke så fick vi börja arbeta. Tanken var att skapa ett spel då en spelare tar sig så långt den kan till höger och få mer currency, med currencyn så kan man köpa upgrades och nå längre. Jag satte mål för mig själv att nå varje lektion t.ex. att fixa playerkontroll mm. Min produkt blev testad genom att låta ett pojke vid 10 års åldern spela det. Pojken gav feedbacken att det var otydligt att veta vad man ska göra till en början.
 ## Positiva erfarenheter
-Här beskriver du vad som har gått bra i ditt projekt och analyserar varför.
- Hur ska du kunna upprepa framgången i projektet.
+Att stanna med projektet över en längre tid var en väldigt positiv erfarenhet för att då kunde jag felsöka och lista ut hur jag skulle fixa ett problem över en längre tid så man har tiden att grubbla över det. 
+En annan positiv erfarenhet med detta projekt var att kunna diskutera och ta hjälp av folk runt mig för att lösa problemen och detta ska jag definitivt ta med mig till de kommande projekt.
+ 
 ## Negativa erfarenheter
-Här beskriver du det som du anser har gått mindre bra med ditt projekt och analyserar hur du kan undvika detta i framtida projekt.
+Jag hade nog kunnat välja ett lite mer realistiskt projekt att arbeta med, detta projekt var för stort för att hinna med under dessa lektioner. I framtida projekt så ska jag tänka noga på hur mycket tid jag har att arbeta på projektet.
+
 ## Sammanfattning
 Här redovisar du dina slutsatser, erfarenheter och lärdomar. Reflektera över din produkt och dess/dina utvecklingsmöjligheter.
 Vad kan vidareutvecklas och finns det utrymme att bygga vidare på projektet.
+
+
