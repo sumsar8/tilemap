@@ -13,7 +13,4 @@ En annan positiv erfarenhet med detta projekt var att kunna diskutera och ta hj�
 Jag hade nog kunnat välja ett lite mer realistiskt projekt att arbeta med, detta projekt var för stort för att hinna med under dessa lektioner. I framtida projekt så ska jag tänka noga på hur mycket tid jag har att arbeta på projektet.
 
 ## Sammanfattning
-Här redovisar du dina slutsatser, erfarenheter och lärdomar. Reflektera över din produkt och dess/dina utvecklingsmöjligheter.
-Vad kan vidareutvecklas och finns det utrymme att bygga vidare på projektet.
-
-
+I helhet så känner jag att detta har varit ett rätt så lyckat projekt, jag har lärt mig massor om spelutveckling och proccessen att arbeta i grupp. Spelet hade kunnat vidareutvecklats genom att göra det 100% klart, fixa shoppen och att fixa ett mål.
